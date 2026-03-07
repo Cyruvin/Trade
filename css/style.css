@@ -1,50 +1,77 @@
-body{
-background:#0f172a;
-color:white;
-font-family:Arial, sans-serif;
-text-align:center;
-padding:40px;
+/* Body & Container */
+body {
+  background: #0f172a;
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
 
-.container{
-background:#1e293b;
-padding:30px;
-border-radius:10px;
-width:90%;
-max-width:500px;
-margin:auto;
-box-shadow:0 0 20px rgba(0,0,0,0.5);
+.container {
+  width: 95%;
+  max-width: 500px;
+  background: #1e293b;
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
 }
 
-h2{
-margin-bottom:20px;
+/* Titles */
+h1 {
+  text-align: center;
+  color: #22c55e;
+  margin-bottom: 20px;
 }
 
-input{
-padding:10px;
-background:#334155;
-border:none;
-border-radius:5px;
-color:white;
+h2 {
+  color: #a5b4fc;
+  margin-bottom: 15px;
 }
 
-button{
-background:#22c55e;
-border:none;
-padding:12px 20px;
-margin-top:15px;
-border-radius:6px;
-font-size:16px;
-cursor:pointer;
+/* Inputs */
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 7px 0;
+  border-radius: 8px;
+  border: none;
+  background: #334155;
+  color: #fff;
+  font-size: 14px;
 }
 
-button:hover{
-background:#16a34a;
+/* Buttons */
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  background: #22c55e;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-#result{
-margin-top:20px;
-background:#020617;
-padding:20px;
-border-radius:8px;
+button:hover {
+  background: #16a34a;
+}
+
+/* Result Box */
+.result {
+  margin-top: 20px;
+  padding: 15px;
+  background: #020617;
+  border-radius: 10px;
+  min-height: 60px;
+}
+
+/* Messages */
+.msg {
+  color: #facc15;
+  font-size: 14px;
+  margin-top: 5px;
+  text-align: center;
 }

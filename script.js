@@ -1,63 +1,56 @@
+// ===== SIGN UP FUNCTION =====
+function signUp() {
+  const username = document.getElementById("username").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const msg = document.getElementById("signup-msg");
+
+  if(!username || !email || !password){
+    msg.innerText = "Please fill all fields";
+    return;
+  }
+
+  if(password.length < 6){
+    msg.innerText = "Password must be at least 6 characters";
+    return;
+  }
+
+  msg.innerText = `Welcome ${username}! You can now analyze charts.`;
+}
+
+// ===== ANALYZE CHART FUNCTION =====
 async function analyzeChart(){
+  const fileInput = document.getElementById("imageInput");
+  const result = document.getElementById("result");
 
-const fileInput = document.getElementById("imageInput")
-const result = document.getElementById("result")
+  if(!fileInput.files.length){
+    result.innerText = "Upload a chart first!";
+    return;
+  }
 
-if(!fileInput.files.length){
-result.innerText="Upload a chart first"
-return
-}
+  result.innerText = "Analyzing chart...";
 
-result.innerText="Analyzing chart..."
+  const file = fileInput.files[0];
+  const reader = new FileReader();
 
-const file = fileInput.files[0]
-const reader = new FileReader()
+  reader.onload = async function(){
+    const base64Image = reader.result.split(",")[1];
 
-reader.onload = async function(){
+    try {
+      const response = await fetch("/.netlify/functions/analyze", {
+        method: "POST",
+        body: JSON.stringify({ chartData: base64Image }),
+        headers: { "Content-Type": "application/json" }
+      });
 
-const base64Image = reader.result.split(",")[1]
+      const data = await response.json();
+      result.innerText = data.choices[0].message.content;
 
-const response = await fetch("https://api.openai.com/v1/chat/completions",{
+    } catch (err){
+      result.innerText = "Error connecting to AI";
+      console.error(err);
+    }
+  }
 
-method:"POST",
-
-headers:{
-"Content-Type":"application/json",
-"Authorization":"Bearer YOUR_API_KEY"
-},
-
-body:JSON.stringify({
-
-model:"gpt-4o",
-
-messages:[
-{
-role:"system",
-content:"You are a professional forex analyst. Analyze the chart image and return trend, signal (BUY SELL NO TRADE), entry, stop loss, take profit, and reason."
-},
-
-{
-role:"user",
-content:[
-{type:"text",text:"Analyze this forex chart."},
-{
-type:"image_url",
-image_url:{url:`data:image/png;base64,${base64Image}`}
-}
-]
-}
-
-]
-
-})
-
-})
-
-const data = await response.json()
-
-result.innerText = data.choices[0].message.content
-
-}
-
-reader.readAsDataURL(file)
+  reader.readAsDataURL(file);
 }
