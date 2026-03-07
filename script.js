@@ -60,5 +60,4 @@ result.innerText = data.choices[0].message.content
 }
 
 reader.readAsDataURL(file)
-
 }
