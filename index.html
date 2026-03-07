@@ -6,12 +6,12 @@
 <title>Forex AI Analyzer</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 <div class="container">
 
   <h1>Forex AI Chart Analyzer</h1>
 
+  <!-- SIGNUP -->
   <div class="signup">
     <h2>Sign Up</h2>
     <input type="text" id="username" placeholder="Username">
@@ -23,11 +23,14 @@
 
   <hr>
 
-  <div class="chart-analyzer">
+  <!-- CHART SECTION -->
+  <div class="chart-analyzer" id="chartSection" style="display:none;">
     <h2>Upload Your Chart</h2>
-    <input type="file" id="imageInput">
+    <div id="dropZone">Drag & Drop Chart Here or Click</div>
+    <input type="file" id="imageInput" style="display:none;">
     <button onclick="analyzeChart()">Analyze Chart</button>
     <div id="result" class="result"></div>
+    <div id="signalBar" class="signal-bar"></div>
   </div>
 
 </div>

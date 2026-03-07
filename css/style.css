@@ -1,4 +1,3 @@
-/* Body & Container */
 body {
   background: #0f172a;
   font-family: 'Arial', sans-serif;
@@ -17,61 +16,33 @@ body {
   box-shadow: 0 0 20px rgba(0,0,0,0.6);
 }
 
-/* Titles */
-h1 {
+h1 { text-align:center; color:#22c55e; margin-bottom:20px; }
+h2 { color:#a5b4fc; margin-bottom:15px; }
+
+input { width:100%; padding:10px; margin:7px 0; border-radius:8px; border:none; background:#334155; color:#fff; font-size:14px; }
+
+button { width:100%; padding:12px; border:none; border-radius:8px; margin-top:10px; background:#22c55e; color:#fff; font-size:16px; cursor:pointer; transition:0.3s; }
+button:hover { background:#16a34a; }
+
+.result { margin-top:20px; padding:15px; background:#020617; border-radius:10px; min-height:60px; }
+.msg { color:#facc15; font-size:14px; margin-top:5px; text-align:center; }
+
+#dropZone {
+  border: 2px dashed #22c55e;
+  padding: 20px;
   text-align: center;
-  color: #22c55e;
-  margin-bottom: 20px;
-}
-
-h2 {
-  color: #a5b4fc;
-  margin-bottom: 15px;
-}
-
-/* Inputs */
-input {
-  width: 100%;
-  padding: 10px;
-  margin: 7px 0;
-  border-radius: 8px;
-  border: none;
-  background: #334155;
-  color: #fff;
-  font-size: 14px;
-}
-
-/* Buttons */
-button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  margin-top: 10px;
-  background: #22c55e;
-  color: #fff;
-  font-size: 16px;
+  margin-bottom: 10px;
   cursor: pointer;
+  border-radius: 10px;
   transition: 0.3s;
 }
+#dropZone.dragover { background: rgba(34,197,94,0.1); }
 
-button:hover {
-  background: #16a34a;
-}
-
-/* Result Box */
-.result {
-  margin-top: 20px;
-  padding: 15px;
-  background: #020617;
+.signal-bar {
+  margin-top: 15px;
+  height: 20px;
   border-radius: 10px;
-  min-height: 60px;
-}
-
-/* Messages */
-.msg {
-  color: #facc15;
-  font-size: 14px;
-  margin-top: 5px;
   text-align: center;
+  line-height: 20px;
+  font-weight: bold;
 }
