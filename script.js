@@ -1,41 +1,64 @@
-document.getElementById('chartUpload').addEventListener('change', (e) => {
-  const file = e.target.files[0];
-  const reader = new FileReader();
-  reader.onload = () => {
-    // You can use the chart data here if needed
-  };
-  reader.readAsDataURL(file);
-});
+async function analyzeChart(){
 
-async function analyzeChart() {
-  const result = document.getElementById("result");
-  result.innerHTML = "Analyzing chart...";
+const fileInput = document.getElementById("imageInput")
+const result = document.getElementById("result")
 
-  const fileInput = document.getElementById('chartUpload');
-  const file = fileInput.files[0];
-  if (!file) {
-    result.innerHTML = 'Please upload a chart image';
-    return;
-  }
+if(!fileInput.files.length){
+result.innerText="Upload a chart first"
+return
+}
 
-  const formData = new FormData();
-  formData.append('chartImage', file);
+result.innerText="Analyzing chart..."
 
-  try {
-    const response = await fetch('/analyze-chart', {
-      method: 'POST',
-      body: formData,
-    });
-    const data = await response.json();
-    result.innerHTML = `
-      Trend: ${data.trend} <br>
-      Signal: ${data.signal} <br>
-      Entry: ${data.entry} <br>
-      Stop Loss: ${data.stopLoss} <br>
-      Take Profit: ${data.takeProfit} <br>
-      Reason: ${data.reason}
-    `;
-  } catch (error) {
-    result.innerHTML = 'Error analyzing chart';
-  }
+const file = fileInput.files[0]
+const reader = new FileReader()
+
+reader.onload = async function(){
+
+const base64Image = reader.result.split(",")[1]
+
+const response = await fetch("https://api.openai.com/v1/chat/completions",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"Authorization":"Bearer YOUR_API_KEY"
+},
+
+body:JSON.stringify({
+
+model:"gpt-4o",
+
+messages:[
+{
+role:"system",
+content:"You are a professional forex analyst. Analyze the chart image and return trend, signal (BUY SELL NO TRADE), entry, stop loss, take profit, and reason."
+},
+
+{
+role:"user",
+content:[
+{type:"text",text:"Analyze this forex chart."},
+{
+type:"image_url",
+image_url:{url:`data:image/png;base64,${base64Image}`}
+}
+]
+}
+
+]
+
+})
+
+})
+
+const data = await response.json()
+
+result.innerText = data.choices[0].message.content
+
+}
+
+reader.readAsDataURL(file)
+
 }

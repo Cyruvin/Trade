@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Forex AI Chart Analyzer</title>
+<title>Forex AI Chart Analyzer</title>
+<style>
+body{
+font-family: Arial;
+text-align:center;
+margin-top:40px;
+}
+button{
+padding:10px 20px;
+font-size:16px;
+}
+#result{
+margin-top:20px;
+font-size:18px;
+}
+</style>
 </head>
+
 <body>
-  <h2>Forex AI Chart Analyzer</h2>
-  <input type="file" id="chartUpload">
-  <button onclick="analyzeChart()">Analyze Chart</button>
-  <h3>Signal Result</h3>
-  <div id="result"></div>
+
+<h2>Forex AI Chart Analyzer</h2>
+
+<input type="file" id="imageInput">
+
+<br><br>
+
+<button onclick="analyzeChart()">Analyze Chart</button>
+
+<div id="result"></div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
