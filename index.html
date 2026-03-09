@@ -1,40 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Forex AI Analyzer</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
 <div class="container">
 
-  <h1>Forex AI Chart Analyzer</h1>
+<h1>Forex AI Analyzer</h1>
 
-  <!-- SIGNUP -->
-  <div class="signup">
-    <h2>Sign Up</h2>
-    <input type="text" id="username" placeholder="Username">
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="signUp()">Sign Up</button>
-    <p id="signup-msg" class="msg"></p>
-  </div>
+<div id="signup">
 
-  <hr>
+<h2>Sign Up</h2>
 
-  <!-- CHART SECTION -->
-  <div class="chart-analyzer" id="chartSection" style="display:none;">
-    <h2>Upload Your Chart</h2>
-    <div id="dropZone">Drag & Drop Chart Here or Click</div>
-    <input type="file" id="imageInput" style="display:none;">
-    <button onclick="analyzeChart()">Analyze Chart</button>
-    <div id="result" class="result"></div>
-    <div id="signalBar" class="signal-bar"></div>
-  </div>
+<input id="username" placeholder="Username">
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+
+<button onclick="signUp()">Sign Up</button>
+
+<p id="msg"></p>
+
+</div>
+
+<div id="analyzer" style="display:none">
+
+<h2>Upload Chart</h2>
+
+<input type="file" id="chart">
+
+<button onclick="analyze()">Analyze</button>
+
+<div id="result"></div>
+
+</div>
 
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
